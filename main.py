@@ -29,7 +29,8 @@ def producer():
 def consumer(pt):
     '''Keep waiting on producer to suply queue until producer is finished'''
 
-    while pt.is_alive():
+    keep_up = True
+    while keep_up:
         if not q.empty():
             cubes = q.get()
 
@@ -39,6 +40,9 @@ def consumer(pt):
                 print(f'Yes {vol}')
             else:
                 print(f'No {vol}')
+
+            if not pt.is_alive():
+                keep_up = False
 
 
 def stackable(cubes):
