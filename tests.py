@@ -39,7 +39,7 @@ class ProducerConsumerTests(unittest.TestCase):
 
     def setUp(self):
         self.pt = threading.Thread(name='producer', target=producer)
-        self.ct = threading.Thread(name='consumer', target=consumer)
+        self.ct = threading.Thread(name='consumer', target=consumer, args=(self.pt,))
         self.pt.start()
         self.ct.start()
 
